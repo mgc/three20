@@ -413,9 +413,8 @@ static const CGFloat kMinCursorWidth  = 50;
   // Reset text so the cursor moves to be at the end of the cellViews
   self.text = kEmpty;
 
-  SEL sel = @selector(textField:didAddCellAtIndex:);
-  if ([self.delegate respondsToSelector:sel]) {
-    [self.delegate performSelector:sel withObject:self withObject:(id)_cellViews.count-1];
+  if ([self.delegate respondsToSelector:@selector(textField:didAddCellAtIndex:)]) {
+    [(id)self.delegate textField:self didAddCellAtIndex:_cellViews.count-1];
   }
 }
 
@@ -428,9 +427,8 @@ static const CGFloat kMinCursorWidth  = 50;
       [_cellViews removeObjectAtIndex:i];
       [cell removeFromSuperview];
 
-      SEL sel = @selector(textField:didRemoveCellAtIndex:);
-      if ([self.delegate respondsToSelector:sel]) {
-        [self.delegate performSelector:sel withObject:self withObject:(id)i];
+      if ([self.delegate respondsToSelector:@selector(textField:didRemoveCellAtIndex:)]) {
+        [(id)self.delegate textField:self didRemoveCellAtIndex:i];
       }
       break;
     }
