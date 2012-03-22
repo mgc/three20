@@ -74,12 +74,17 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
                selector:@selector(applicationWillLeaveForeground:)
                    name:UIApplicationWillTerminateNotification
                  object:nil];
+
+/* Despite the runtime check, referencing UIApplicationDidEnterBackgroundNotification
+   causes a crash on 3.1.3.  -ejf
     if (nil != &UIApplicationDidEnterBackgroundNotification) {
       [center addObserver:self
                  selector:@selector(applicationWillLeaveForeground:)
                      name:UIApplicationDidEnterBackgroundNotification
                    object:nil];
     }
+*/
+
   }
   return self;
 }
